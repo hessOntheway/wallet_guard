@@ -1,14 +1,8 @@
-use serde::Serialize;
 use bip39::{Language, Mnemonic,};
 use k256::{ecdsa::SigningKey};
 use sha3::{Digest, Keccak256};
 use hex::encode;
 
-#[derive(Serialize)]
-pub struct GenerateWalletResonse{
-    pub mnemonic: String,
-    pub address: String,
-}
 
 pub fn generate_wallet() -> (String, String, String) {
     let mnemonic = Mnemonic::generate_in(Language::English, 24).unwrap();
@@ -27,3 +21,4 @@ pub fn generate_wallet() -> (String, String, String) {
         format!("0x{}", encode(address)),
     )
 }
+
